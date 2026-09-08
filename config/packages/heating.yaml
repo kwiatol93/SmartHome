@@ -1,11 +1,11 @@
 # Jeden pakiet Home Assistanta. Wszystkie encje modułu mają prefiks heating_.
 # Włączenie go w HA opisuje README w katalogu głównym repozytorium.
 
-input_boolean: !include heating/helpers/input_boolean.yaml
-input_select: !include heating/helpers/input_select.yaml
-input_number: !include heating/helpers/input_number.yaml
-input_datetime: !include heating/helpers/input_datetime.yaml
-input_button: !include heating/helpers/input_button.yaml
-timer: !include heating/helpers/timer.yaml
-template: !include_dir_merge_list heating/templates
-automation: !include_dir_merge_list heating/automations
+input_boolean: !include ../heating/helpers/input_boolean.yaml
+input_select: !include ../heating/helpers/input_select.yaml
+input_number: !include ../heating/helpers/input_number.yaml
+input_datetime: !include ../heating/helpers/input_datetime.yaml
+input_button: !include ../heating/helpers/input_button.yaml
+timer: !include ../heating/helpers/timer.yaml
+template: !include_dir_merge_list ../heating/templates
+automation: !include_dir_merge_list ../heating/automations

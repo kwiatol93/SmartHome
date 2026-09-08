@@ -165,7 +165,8 @@ Repozytorium jest klonowane na HA jako osobny katalog:
 /config/
   configuration.yaml
   smarthome/
-    config/packages/heating/
+    config/packages/heating.yaml
+    config/heating/
 ```
 
 Główny `configuration.yaml` HA ładuje pakiety z repozytorium. Repo nie zastępuje całego `/config` i nie zawiera sekretów, `.storage`, bazy danych, backupów, logów, mediów ani certyfikatów.

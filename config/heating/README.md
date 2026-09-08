@@ -3,7 +3,7 @@
 Aktualny podział plików:
 
 ```text
-../heating.yaml                    punkt wejścia pakietu HA
+../packages/heating.yaml           punkt wejścia pakietu HA
 helpers/                           przełączniki, suwaki, przyciski i timer
 templates/00_profile.yaml          wybór profilu i wyliczenia niezależne od sprzętu
 templates/10_demand.yaml           zapotrzebowanie stref w trybie obserwacji
