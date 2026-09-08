@@ -1,0 +1,84 @@
+# Brain w trybie obserwacji. Poniższe encje mówią, które strefy *powinny*
+# grzać. Nie są jeszcze połączone z żadnym urządzeniem wykonawczym.
+
+- binary_sensor:
+    - name: Ogrzewanie — zapotrzebowanie strefa dzienna
+      unique_id: heating_demand_living
+      device_class: heat
+      state: >-
+        {% set temperature = states('sensor.ogrzewanie_temperatura_strefa_dzienna') | float(none) %}
+        {% set setpoint = states('input_number.heating_setpoint_living') | float(none) %}
+        {{ temperature is not none and setpoint is not none and temperature < setpoint }}
+
+    - name: Ogrzewanie — zapotrzebowanie korytarz
+      unique_id: heating_demand_corridor
+      device_class: heat
+      state: >-
+        {% set temperature = states('sensor.ogrzewanie_temperatura_korytarz') | float(none) %}
+        {% set setpoint = states('input_number.heating_setpoint_corridor') | float(none) %}
+        {{ temperature is not none and setpoint is not none and temperature < setpoint }}
+
+    - name: Ogrzewanie — zapotrzebowanie łazienka
+      unique_id: heating_demand_bathroom
+      device_class: heat
+      state: >-
+        {% set temperature = states('sensor.ogrzewanie_temperatura_lazienka') | float(none) %}
+        {% set setpoint = states('sensor.ogrzewanie_efektywny_setpoint_lazienki') | float(none) %}
+        {% set own_demand = temperature is not none and setpoint is not none and temperature < setpoint %}
+        {{ own_demand or is_state('binary_sensor.ogrzewanie_zapotrzebowanie_korytarz', 'on') }}
+
+    - name: Ogrzewanie — zapotrzebowanie WC
+      unique_id: heating_demand_wc
+      device_class: heat
+      state: >-
+        {% set temperature = states('sensor.ogrzewanie_temperatura_wc') | float(none) %}
+        {% set base = states('input_number.heating_setpoint_wc') | float(none) %}
+        {% set day = states('sensor.ogrzewanie_aktywny_profil') in ['dzien_praca_praca', 'dzien_praca_popoludnie', 'dzien_wolny'] %}
+        {% set living = is_state('binary_sensor.ogrzewanie_zapotrzebowanie_strefa_dzienna', 'on') %}
+        {% set own_demand = temperature is not none and base is not none and temperature < base %}
+        {% set comfort_demand = temperature is not none and day and living and temperature < 23.7 %}
+        {{ own_demand or comfort_demand }}
+
+    - name: Ogrzewanie — zapotrzebowanie wiatrołap
+      unique_id: heating_demand_wind_lobby
+      device_class: heat
+      state: >-
+        {% set temperature = states('sensor.ogrzewanie_temperatura_wiatrolap') | float(none) %}
+        {% set base = states('input_number.heating_setpoint_wind_lobby') | float(none) %}
+        {% set day = states('sensor.ogrzewanie_aktywny_profil') in ['dzien_praca_praca', 'dzien_praca_popoludnie', 'dzien_wolny'] %}
+        {% set living = is_state('binary_sensor.ogrzewanie_zapotrzebowanie_strefa_dzienna', 'on') %}
+        {% set own_demand = temperature is not none and base is not none and temperature < base %}
+        {% set comfort_demand = temperature is not none and day and living and temperature < 20.2 %}
+        {{ own_demand or comfort_demand }}
+
+    - name: Ogrzewanie — zapotrzebowanie biuro
+      unique_id: heating_demand_office
+      device_class: heat
+      state: >-
+        {% set temperature = states('sensor.ogrzewanie_temperatura_biuro') | float(none) %}
+        {% set setpoint = states('input_number.heating_setpoint_office') | float(none) %}
+        {{ temperature is not none and setpoint is not none and temperature < setpoint }}
+
+    - name: Ogrzewanie — zapotrzebowanie pokój Hani
+      unique_id: heating_demand_hania
+      device_class: heat
+      state: >-
+        {% set temperature = states('sensor.ogrzewanie_temperatura_pokoj_hani') | float(none) %}
+        {% set setpoint = states('input_number.heating_setpoint_hania') | float(none) %}
+        {{ temperature is not none and setpoint is not none and temperature < setpoint }}
+
+    - name: Ogrzewanie — zapotrzebowanie sypialnia
+      unique_id: heating_demand_bedroom
+      device_class: heat
+      state: >-
+        {% set temperature = states('sensor.ogrzewanie_temperatura_sypialnia') | float(none) %}
+        {% set setpoint = states('input_number.heating_setpoint_bedroom') | float(none) %}
+        {{ temperature is not none and setpoint is not none and temperature < setpoint }}
+
+    - name: Ogrzewanie — zapotrzebowanie poddasze
+      unique_id: heating_demand_attic
+      device_class: heat
+      state: >-
+        {% set temperature = states('sensor.ogrzewanie_temperatura_poddasze') | float(none) %}
+        {% set setpoint = states('input_number.heating_setpoint_attic') | float(none) %}
+        {{ temperature is not none and setpoint is not none and temperature < setpoint }}
