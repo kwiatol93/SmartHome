@@ -1,6 +1,9 @@
 heating_reset_all_setpoints:
   name: Ogrzewanie — resetuj wszystkie setpointy
   icon: mdi:restore
+heating_start_free_day:
+  name: Ogrzewanie — wymuś dzień wolny
+  icon: mdi:calendar-plus
 heating_cancel_free_day:
   name: Ogrzewanie — anuluj dzień wolny
   icon: mdi:calendar-remove

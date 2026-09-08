@@ -1,0 +1,150 @@
+# Te automatyzacje zmieniają wyłącznie encje logiczne modułu. Nie sterują sprzętem.
+
+- id: heating_apply_profile_defaults
+  alias: Ogrzewanie — zastosuj domyślne setpointy profilu
+  mode: restart
+  triggers:
+    - trigger: homeassistant
+      event: start
+    - trigger: state
+      entity_id: sensor.ogrzewanie_aktywny_profil
+    - trigger: state
+      entity_id:
+        - input_button.heating_reset_all_setpoints
+        - input_button.heating_cancel_free_day
+  variables:
+    profile: "{{ states('sensor.ogrzewanie_aktywny_profil') }}"
+    living: "{{ {'dzien_praca_praca': 22.9, 'dzien_praca_popoludnie': 22.9, 'dzien_wolny': 22.9, 'noc': 22.65, 'wyjazd': 20.0}.get(profile, 20.0) }}"
+    bathroom: "{{ {'dzien_praca_praca': 23.5, 'dzien_praca_popoludnie': 23.5, 'dzien_wolny': 23.5, 'noc': 23.2, 'wyjazd': 20.0}.get(profile, 20.0) }}"
+    corridor: "{{ {'dzien_praca_praca': 22.8, 'dzien_praca_popoludnie': 22.8, 'dzien_wolny': 22.8, 'noc': 22.5, 'wyjazd': 20.0}.get(profile, 20.0) }}"
+    wc: "{{ {'dzien_praca_praca': 22.1, 'dzien_praca_popoludnie': 22.1, 'dzien_wolny': 22.1, 'noc': 22.0, 'wyjazd': 19.0}.get(profile, 19.0) }}"
+    wind_lobby: "{{ {'dzien_praca_praca': 19.5, 'dzien_praca_popoludnie': 19.5, 'dzien_wolny': 19.5, 'noc': 19.5, 'wyjazd': 17.0}.get(profile, 17.0) }}"
+    office: "{{ {'dzien_praca_praca': 22.8, 'dzien_praca_popoludnie': 21.5, 'dzien_wolny': 21.5, 'noc': 20.8, 'wyjazd': 17.0}.get(profile, 17.0) }}"
+    hania: "{{ {'dzien_praca_praca': 21.3, 'dzien_praca_popoludnie': 21.7, 'dzien_wolny': 21.7, 'noc': 20.8, 'wyjazd': 17.0}.get(profile, 17.0) }}"
+    bedroom: "{{ {'dzien_praca_praca': 21.3, 'dzien_praca_popoludnie': 21.8, 'dzien_wolny': 21.8, 'noc': 20.8, 'wyjazd': 17.0}.get(profile, 17.0) }}"
+    attic: "{{ {'dzien_praca_praca': 19.9, 'dzien_praca_popoludnie': 19.9, 'dzien_wolny': 19.9, 'noc': 19.5, 'wyjazd': 16.0}.get(profile, 16.0) }}"
+  actions:
+    - action: input_number.set_value
+      target: {entity_id: input_number.heating_setpoint_living}
+      data: {value: "{{ living }}"}
+    - action: input_number.set_value
+      target: {entity_id: input_number.heating_setpoint_bathroom}
+      data: {value: "{{ bathroom }}"}
+    - action: input_number.set_value
+      target: {entity_id: input_number.heating_setpoint_corridor}
+      data: {value: "{{ corridor }}"}
+    - action: input_number.set_value
+      target: {entity_id: input_number.heating_setpoint_wc}
+      data: {value: "{{ wc }}"}
+    - action: input_number.set_value
+      target: {entity_id: input_number.heating_setpoint_wind_lobby}
+      data: {value: "{{ wind_lobby }}"}
+    - action: input_number.set_value
+      target: {entity_id: input_number.heating_setpoint_office}
+      data: {value: "{{ office }}"}
+    - action: input_number.set_value
+      target: {entity_id: input_number.heating_setpoint_hania}
+      data: {value: "{{ hania }}"}
+    - action: input_number.set_value
+      target: {entity_id: input_number.heating_setpoint_bedroom}
+      data: {value: "{{ bedroom }}"}
+    - action: input_number.set_value
+      target: {entity_id: input_number.heating_setpoint_attic}
+      data: {value: "{{ attic }}"}
+
+- id: heating_start_forced_free_day
+  alias: Ogrzewanie — wymuś dzień wolny
+  mode: restart
+  triggers:
+    - trigger: state
+      entity_id: input_button.heating_start_free_day
+  actions:
+    - action: input_boolean.turn_on
+      target: {entity_id: input_boolean.heating_free_day_forced}
+    - choose:
+        - conditions:
+            - condition: template
+              value_template: "{{ is_state('input_select.heating_free_day_duration', 'do_konca_dnia') }}"
+          sequence:
+            - action: input_datetime.set_datetime
+              target: {entity_id: input_datetime.heating_free_day_until}
+              data: {datetime: "{{ today_at('23:59:59').isoformat() }}"}
+        - conditions:
+            - condition: template
+              value_template: "{{ is_state('input_select.heating_free_day_duration', '1_dzien') }}"
+          sequence:
+            - action: input_datetime.set_datetime
+              target: {entity_id: input_datetime.heating_free_day_until}
+              data: {datetime: "{{ (now() + timedelta(days=1)).isoformat() }}"}
+        - conditions:
+            - condition: template
+              value_template: "{{ is_state('input_select.heating_free_day_duration', '2_dni') }}"
+          sequence:
+            - action: input_datetime.set_datetime
+              target: {entity_id: input_datetime.heating_free_day_until}
+              data: {datetime: "{{ (now() + timedelta(days=2)).isoformat() }}"}
+        - conditions:
+            - condition: template
+              value_template: "{{ is_state('input_select.heating_free_day_duration', '3_dni') }}"
+          sequence:
+            - action: input_datetime.set_datetime
+              target: {entity_id: input_datetime.heating_free_day_until}
+              data: {datetime: "{{ (now() + timedelta(days=3)).isoformat() }}"}
+        - conditions:
+            - condition: template
+              value_template: "{{ is_state('input_select.heating_free_day_duration', '4_dni') }}"
+          sequence:
+            - action: input_datetime.set_datetime
+              target: {entity_id: input_datetime.heating_free_day_until}
+              data: {datetime: "{{ (now() + timedelta(days=4)).isoformat() }}"}
+        - conditions:
+            - condition: template
+              value_template: "{{ is_state('input_select.heating_free_day_duration', '5_dni') }}"
+          sequence:
+            - action: input_datetime.set_datetime
+              target: {entity_id: input_datetime.heating_free_day_until}
+              data: {datetime: "{{ (now() + timedelta(days=5)).isoformat() }}"}
+
+- id: heating_cancel_forced_free_day
+  alias: Ogrzewanie — anuluj wymuszony dzień wolny
+  mode: single
+  triggers:
+    - trigger: state
+      entity_id: input_button.heating_cancel_free_day
+  actions:
+    - action: input_boolean.turn_off
+      target: {entity_id: input_boolean.heating_free_day_forced}
+
+- id: heating_expire_forced_free_day
+  alias: Ogrzewanie — zakończ wymuszony dzień wolny po czasie
+  mode: single
+  triggers:
+    - trigger: time_pattern
+      minutes: "/1"
+  conditions:
+    - condition: state
+      entity_id: input_boolean.heating_free_day_forced
+      state: 'on'
+    - condition: template
+      value_template: >-
+        {{ not is_state('input_select.heating_free_day_duration', 'do_recznego_anulowania')
+           and as_timestamp(states('input_datetime.heating_free_day_until'), 0) <= as_timestamp(now()) }}
+  actions:
+    - action: input_boolean.turn_off
+      target: {entity_id: input_boolean.heating_free_day_forced}
+
+- id: heating_start_bathroom_boost
+  alias: Ogrzewanie — dogrzewanie łazienki
+  mode: restart
+  triggers:
+    - trigger: state
+      entity_id: input_button.heating_start_bathroom_boost
+  conditions:
+    - condition: state
+      entity_id: input_select.heating_home_mode
+      state: dom
+  actions:
+    - action: timer.start
+      target: {entity_id: timer.heating_bathroom_boost}
+      data:
+        duration: "{{ {'60_minut': '01:00:00', '90_minut': '01:30:00', '120_minut': '02:00:00'}.get(states('input_select.heating_bathroom_boost_duration'), '01:00:00') }}"
