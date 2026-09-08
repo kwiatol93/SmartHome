@@ -1,0 +1,38 @@
+- sensor:
+    - name: Ogrzewanie — aktywny profil
+      unique_id: heating_active_profile
+      icon: mdi:calendar-clock
+      state: >-
+        {% set mode = states('input_select.heating_home_mode') %}
+        {% set free_day = is_state('input_boolean.heating_free_day_forced', 'on') %}
+        {% set hour = now().hour %}
+        {% if mode == 'wyjazd' %}
+          wyjazd
+        {% elif hour >= 20 or hour < 6 %}
+          noc
+        {% elif free_day or now().weekday() >= 5 %}
+          dzien_wolny
+        {% elif hour < 15 or (hour == 15 and now().minute < 30) %}
+          dzien_praca_praca
+        {% else %}
+          dzien_praca_popoludnie
+        {% endif %}
+
+    - name: Ogrzewanie — domyślny setpoint strefa dzienna
+      unique_id: heating_default_setpoint_living
+      unit_of_measurement: "°C"
+      state: >-
+        {% set p = states('sensor.ogrzewanie_aktywny_profil') %}
+        {{ {'dzien_praca_praca': 22.9, 'dzien_praca_popoludnie': 22.9,
+            'dzien_wolny': 22.9, 'noc': 22.65, 'wyjazd': 20.0}.get(p, 20.0) }}
+
+    - name: Ogrzewanie — efektywny setpoint łazienki
+      unique_id: heating_effective_setpoint_bathroom
+      unit_of_measurement: "°C"
+      state: >-
+        {% set evening = now().strftime('%H:%M') >= '18:30' and now().strftime('%H:%M') < '20:00' %}
+        {% set boost = is_state('timer.heating_bathroom_boost', 'active') %}
+        {% set home = is_state('input_select.heating_home_mode', 'dom') %}
+        {% if home and (evening or boost) %} 25.0
+        {% else %} {{ states('input_number.heating_setpoint_bathroom') }}
+        {% endif %}

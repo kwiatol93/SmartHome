@@ -1,0 +1,63 @@
+heating_setpoint_living:
+  name: Ogrzewanie — setpoint strefa dzienna
+  min: 15
+  max: 28
+  step: 0.1
+  unit_of_measurement: "°C"
+  mode: box
+heating_setpoint_bathroom:
+  name: Ogrzewanie — setpoint łazienka
+  min: 15
+  max: 28
+  step: 0.1
+  unit_of_measurement: "°C"
+  mode: box
+heating_setpoint_corridor:
+  name: Ogrzewanie — setpoint korytarz
+  min: 15
+  max: 28
+  step: 0.1
+  unit_of_measurement: "°C"
+  mode: box
+heating_setpoint_wc:
+  name: Ogrzewanie — setpoint WC
+  min: 15
+  max: 28
+  step: 0.1
+  unit_of_measurement: "°C"
+  mode: box
+heating_setpoint_wind_lobby:
+  name: Ogrzewanie — setpoint wiatrołap
+  min: 15
+  max: 28
+  step: 0.1
+  unit_of_measurement: "°C"
+  mode: box
+heating_setpoint_office:
+  name: Ogrzewanie — setpoint biuro
+  min: 15
+  max: 28
+  step: 0.1
+  unit_of_measurement: "°C"
+  mode: box
+heating_setpoint_hania:
+  name: Ogrzewanie — setpoint pokój Hani
+  min: 15
+  max: 28
+  step: 0.1
+  unit_of_measurement: "°C"
+  mode: box
+heating_setpoint_bedroom:
+  name: Ogrzewanie — setpoint sypialnia
+  min: 15
+  max: 28
+  step: 0.1
+  unit_of_measurement: "°C"
+  mode: box
+heating_setpoint_attic:
+  name: Ogrzewanie — setpoint poddasze
+  min: 15
+  max: 28
+  step: 0.1
+  unit_of_measurement: "°C"
+  mode: box

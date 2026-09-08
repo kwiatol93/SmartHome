@@ -1,0 +1,57 @@
+# Adapter wejściowy obecnego domu. To jedyne miejsce, gdzie pojawiają się
+# encje sprzętowe. Przy wymianie czujnika zmieniamy wyłącznie ten plik.
+- sensor:
+    - name: Ogrzewanie — temperatura strefa dzienna
+      unique_id: heating_temperature_living
+      device_class: temperature
+      state_class: measurement
+      unit_of_measurement: "°C"
+      state: "{{ states('sensor.ths_salon_temperatura') }}"
+    - name: Ogrzewanie — temperatura łazienka
+      unique_id: heating_temperature_bathroom
+      device_class: temperature
+      state_class: measurement
+      unit_of_measurement: "°C"
+      state: "{{ states('sensor.ths_lazienka_temperatura') }}"
+    - name: Ogrzewanie — temperatura korytarz
+      unique_id: heating_temperature_corridor
+      device_class: temperature
+      state_class: measurement
+      unit_of_measurement: "°C"
+      state: "{{ states('sensor.ths_korytarz_temperatura') }}"
+    - name: Ogrzewanie — temperatura WC
+      unique_id: heating_temperature_wc
+      device_class: temperature
+      state_class: measurement
+      unit_of_measurement: "°C"
+      state: "{{ states('sensor.ths_wc_temperatura') }}"
+    - name: Ogrzewanie — temperatura wiatrołap
+      unique_id: heating_temperature_wind_lobby
+      device_class: temperature
+      state_class: measurement
+      unit_of_measurement: "°C"
+      state: "{{ states('sensor.ths_wiatrolap_temperatura') }}"
+    - name: Ogrzewanie — temperatura biuro
+      unique_id: heating_temperature_office
+      device_class: temperature
+      state_class: measurement
+      unit_of_measurement: "°C"
+      state: "{{ states('sensor.ths_biuro_temperatura') }}"
+    - name: Ogrzewanie — temperatura pokój Hani
+      unique_id: heating_temperature_hania
+      device_class: temperature
+      state_class: measurement
+      unit_of_measurement: "°C"
+      state: "{{ states('sensor.ths_hania_temperatura') }}"
+    - name: Ogrzewanie — temperatura sypialnia
+      unique_id: heating_temperature_bedroom
+      device_class: temperature
+      state_class: measurement
+      unit_of_measurement: "°C"
+      state: "{{ states('sensor.ths_sypialnia_temperatura') }}"
+    - name: Ogrzewanie — temperatura poddasze
+      unique_id: heating_temperature_attic
+      device_class: temperature
+      state_class: measurement
+      unit_of_measurement: "°C"
+      state: "{{ states('sensor.ths_poddasze_temperatura') }}"

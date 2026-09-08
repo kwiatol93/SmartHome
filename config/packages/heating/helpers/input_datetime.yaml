@@ -1,0 +1,4 @@
+heating_free_day_until:
+  name: Wymuszony dzień wolny do
+  has_date: true
+  has_time: true

@@ -1,0 +1,3 @@
+heating_bathroom_boost:
+  name: Dogrzewanie łazienki
+  restore: true

@@ -1,15 +1,16 @@
 # Pakiet ogrzewania
 
-Docelowy podział plików:
+Aktualny podział plików:
 
 ```text
-00_helpers.yaml       encje pomocnicze i przełączniki trybów
-10_inputs.yaml        logiczne wejścia, np. temperatury stref
-20_profiles.yaml      profile i domyślne setpointy
-30_brain.yaml         decyzje o zapotrzebowaniu na ciepło
-40_outputs.yaml       logiczne polecenia dla stref i pieca
-adapters/
-  current_house.yaml  jedyne miejsce zależne od obecnego sprzętu
+../heating.yaml                    punkt wejścia pakietu HA
+helpers/                           przełączniki, suwaki, przyciski i timer
+templates/00_profile.yaml          wybór profilu i wyliczenia niezależne od sprzętu
+templates/90_adapter_current_house.yaml
+                                   mapowanie fizycznych czujników na wejścia logiczne
 ```
 
-Na tym etapie pliki automatyzacji nie istnieją celowo: najpierw uzgadniamy profile temperatur, histerezę i zachowanie podłogówki.
+Pierwsza wersja zawiera tylko encje i adapter wejściowy. Nie zawiera adaptera
+wyjściowego ani automatyzacji wykonawczych, więc działa wyłącznie jako bezpieczny
+fundament do trybu obserwacji. Kolejny krok doda brain, minimalny czas 3 minut,
+rekonsyliację co 5 minut oraz logiczne polecenia wyjściowe.

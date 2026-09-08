@@ -1,0 +1,29 @@
+heating_home_mode:
+  name: Tryb domu
+  options:
+    - dom
+    - wyjazd
+  initial: dom
+  icon: mdi:home-account
+
+heating_free_day_duration:
+  name: Czas wymuszenia dnia wolnego
+  options:
+    - do_konca_dnia
+    - 1_dzien
+    - 2_dni
+    - 3_dni
+    - 4_dni
+    - 5_dni
+    - do_recznego_anulowania
+  initial: do_konca_dnia
+  icon: mdi:calendar-clock
+
+heating_bathroom_boost_duration:
+  name: Czas dogrzewania łazienki
+  options:
+    - 60_minut
+    - 90_minut
+    - 120_minut
+  initial: 60_minut
+  icon: mdi:shower

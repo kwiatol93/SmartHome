@@ -1,0 +1,12 @@
+heating_reset_all_setpoints:
+  name: Ogrzewanie — resetuj wszystkie setpointy
+  icon: mdi:restore
+heating_cancel_free_day:
+  name: Ogrzewanie — anuluj dzień wolny
+  icon: mdi:calendar-remove
+heating_start_bathroom_boost:
+  name: Ogrzewanie — rozpocznij dogrzewanie łazienki
+  icon: mdi:shower-head
+heating_emergency_off:
+  name: Ogrzewanie — awaryjnie wyłącz
+  icon: mdi:alert-octagon

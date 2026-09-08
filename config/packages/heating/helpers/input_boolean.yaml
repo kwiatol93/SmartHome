@@ -1,0 +1,14 @@
+heating_automation_active:
+  name: Automatyka ogrzewania aktywna
+  icon: mdi:radiator
+  initial: false
+
+heating_shadow_mode:
+  name: Ogrzewanie — tryb obserwacji
+  icon: mdi:eye-outline
+  initial: true
+
+heating_free_day_forced:
+  name: Ogrzewanie — wymuszony dzień wolny
+  icon: mdi:calendar-star
+  initial: false
