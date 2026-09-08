@@ -1,0 +1,20 @@
+# Home Assistant secrets and runtime state
+secrets.yaml
+.storage/
+*.db
+*.db-shm
+*.db-wal
+home-assistant.log*
+
+# Backups, certificates and user media
+backup/
+backups/
+*.tar
+ssl/
+media/
+share/
+
+# Editor and operating-system files
+.vscode/
+.idea/
+.DS_Store

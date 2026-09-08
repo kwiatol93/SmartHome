@@ -1,0 +1,7 @@
+# Skopiuj ten plik jako configuration.yaml dopiero w docelowym środowisku HA.
+# Plik secrets.yaml pozostaje lokalny i nie jest wersjonowany.
+
+default_config:
+
+homeassistant:
+  packages: !include_dir_named packages
