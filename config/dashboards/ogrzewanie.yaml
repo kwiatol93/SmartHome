@@ -32,15 +32,15 @@ views:
         title: Logiczne wyjścia — co nowy system chce teraz grzać
         show_header_toggle: false
         entities:
-          - {entity: binary_sensor.ogrzewanie_zapotrzebowanie_strefa_dzienna, name: Strefa dzienna}
-          - {entity: binary_sensor.ogrzewanie_zapotrzebowanie_lazienka, name: Łazienka}
-          - {entity: binary_sensor.ogrzewanie_zapotrzebowanie_korytarz, name: Korytarz}
-          - {entity: binary_sensor.ogrzewanie_zapotrzebowanie_wc, name: WC}
-          - {entity: binary_sensor.ogrzewanie_zapotrzebowanie_wiatrolap, name: Wiatrołap}
-          - {entity: binary_sensor.ogrzewanie_zapotrzebowanie_biuro, name: Biuro}
-          - {entity: binary_sensor.ogrzewanie_zapotrzebowanie_pokoj_hani, name: Pokój Hani}
-          - {entity: binary_sensor.ogrzewanie_zapotrzebowanie_sypialnia, name: Sypialnia}
-          - {entity: binary_sensor.ogrzewanie_zapotrzebowanie_poddasze, name: Poddasze}
+          - {entity: sensor.ogrzewanie_decyzja_strefa_dzienna, name: Strefa dzienna}
+          - {entity: sensor.ogrzewanie_decyzja_lazienka, name: Łazienka}
+          - {entity: sensor.ogrzewanie_decyzja_korytarz, name: Korytarz}
+          - {entity: sensor.ogrzewanie_decyzja_wc, name: WC}
+          - {entity: sensor.ogrzewanie_decyzja_wiatrolap, name: Wiatrołap}
+          - {entity: sensor.ogrzewanie_decyzja_biuro, name: Biuro}
+          - {entity: sensor.ogrzewanie_decyzja_pokoj_hani, name: Pokój Hani}
+          - {entity: sensor.ogrzewanie_decyzja_sypialnia, name: Sypialnia}
+          - {entity: sensor.ogrzewanie_decyzja_poddasze, name: Poddasze}
 
       - type: grid
         title: Setpointy stref
@@ -63,7 +63,7 @@ views:
         entities:
           - {entity: sensor.ogrzewanie_temperatura_strefa_dzienna, name: Temperatura}
           - {entity: sensor.ogrzewanie_domyslny_setpoint_strefa_dzienna, name: Domyślny setpoint profilu}
-          - {entity: binary_sensor.ogrzewanie_zapotrzebowanie_strefa_dzienna, name: Decyzja braina}
+          - {entity: sensor.ogrzewanie_decyzja_strefa_dzienna, name: Decyzja braina}
 
       - type: entities
         title: Łazienka i korytarz
@@ -71,29 +71,29 @@ views:
         entities:
           - {entity: sensor.ogrzewanie_temperatura_lazienka, name: Łazienka — temperatura}
           - {entity: sensor.ogrzewanie_efektywny_setpoint_lazienki, name: Łazienka — setpoint efektywny}
-          - {entity: binary_sensor.ogrzewanie_zapotrzebowanie_lazienka, name: Łazienka — decyzja braina}
+          - {entity: sensor.ogrzewanie_decyzja_lazienka, name: Łazienka — decyzja braina}
           - {entity: input_select.heating_bathroom_boost_duration, name: Czas dogrzewania}
           - {entity: input_button.heating_start_bathroom_boost, name: Uruchom dogrzewanie}
           - {entity: timer.heating_bathroom_boost, name: Pozostały czas dogrzewania}
           - {entity: sensor.ogrzewanie_temperatura_korytarz, name: Korytarz — temperatura}
-          - {entity: binary_sensor.ogrzewanie_zapotrzebowanie_korytarz, name: Korytarz — decyzja braina}
+          - {entity: sensor.ogrzewanie_decyzja_korytarz, name: Korytarz — decyzja braina}
 
       - type: entities
         title: Pozostałe strefy
         show_header_toggle: false
         entities:
           - {entity: sensor.ogrzewanie_temperatura_wc, name: WC — temperatura}
-          - {entity: binary_sensor.ogrzewanie_zapotrzebowanie_wc, name: WC — decyzja braina}
+          - {entity: sensor.ogrzewanie_decyzja_wc, name: WC — decyzja braina}
           - {entity: sensor.ogrzewanie_temperatura_wiatrolap, name: Wiatrołap — temperatura}
-          - {entity: binary_sensor.ogrzewanie_zapotrzebowanie_wiatrolap, name: Wiatrołap — decyzja braina}
+          - {entity: sensor.ogrzewanie_decyzja_wiatrolap, name: Wiatrołap — decyzja braina}
           - {entity: sensor.ogrzewanie_temperatura_biuro, name: Biuro — temperatura}
-          - {entity: binary_sensor.ogrzewanie_zapotrzebowanie_biuro, name: Biuro — decyzja braina}
+          - {entity: sensor.ogrzewanie_decyzja_biuro, name: Biuro — decyzja braina}
           - {entity: sensor.ogrzewanie_temperatura_pokoj_hani, name: Pokój Hani — temperatura}
-          - {entity: binary_sensor.ogrzewanie_zapotrzebowanie_pokoj_hani, name: Pokój Hani — decyzja braina}
+          - {entity: sensor.ogrzewanie_decyzja_pokoj_hani, name: Pokój Hani — decyzja braina}
           - {entity: sensor.ogrzewanie_temperatura_sypialnia, name: Sypialnia — temperatura}
-          - {entity: binary_sensor.ogrzewanie_zapotrzebowanie_sypialnia, name: Sypialnia — decyzja braina}
+          - {entity: sensor.ogrzewanie_decyzja_sypialnia, name: Sypialnia — decyzja braina}
           - {entity: sensor.ogrzewanie_temperatura_poddasze, name: Poddasze — temperatura}
-          - {entity: binary_sensor.ogrzewanie_zapotrzebowanie_poddasze, name: Poddasze — decyzja braina}
+          - {entity: sensor.ogrzewanie_decyzja_poddasze, name: Poddasze — decyzja braina}
 
       - type: entities
         title: Bezpieczniki i reset

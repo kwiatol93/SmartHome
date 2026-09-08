@@ -1,0 +1,58 @@
+# Czytelna prezentacja decyzji braina dla dashboardu. Encje binary_sensor
+# pozostają technicznym źródłem prawdy; te sensory nie sugerują, że sprzęt
+# fizycznie już grzeje.
+- sensor:
+    - name: Ogrzewanie — decyzja strefa dzienna
+      unique_id: heating_decision_living
+      icon: >-
+        {{ 'mdi:radiator' if is_state('binary_sensor.ogrzewanie_zapotrzebowanie_strefa_dzienna', 'on') else 'mdi:radiator-disabled' }}
+      state: >-
+        {{ 'Grzać' if is_state('binary_sensor.ogrzewanie_zapotrzebowanie_strefa_dzienna', 'on') else 'Nie grzać' }}
+    - name: Ogrzewanie — decyzja łazienka
+      unique_id: heating_decision_bathroom
+      icon: >-
+        {{ 'mdi:radiator' if is_state('binary_sensor.ogrzewanie_zapotrzebowanie_lazienka', 'on') else 'mdi:radiator-disabled' }}
+      state: >-
+        {{ 'Grzać' if is_state('binary_sensor.ogrzewanie_zapotrzebowanie_lazienka', 'on') else 'Nie grzać' }}
+    - name: Ogrzewanie — decyzja korytarz
+      unique_id: heating_decision_corridor
+      icon: >-
+        {{ 'mdi:radiator' if is_state('binary_sensor.ogrzewanie_zapotrzebowanie_korytarz', 'on') else 'mdi:radiator-disabled' }}
+      state: >-
+        {{ 'Grzać' if is_state('binary_sensor.ogrzewanie_zapotrzebowanie_korytarz', 'on') else 'Nie grzać' }}
+    - name: Ogrzewanie — decyzja WC
+      unique_id: heating_decision_wc
+      icon: >-
+        {{ 'mdi:radiator' if is_state('binary_sensor.ogrzewanie_zapotrzebowanie_wc', 'on') else 'mdi:radiator-disabled' }}
+      state: >-
+        {{ 'Grzać' if is_state('binary_sensor.ogrzewanie_zapotrzebowanie_wc', 'on') else 'Nie grzać' }}
+    - name: Ogrzewanie — decyzja wiatrołap
+      unique_id: heating_decision_wind_lobby
+      icon: >-
+        {{ 'mdi:radiator' if is_state('binary_sensor.ogrzewanie_zapotrzebowanie_wiatrolap', 'on') else 'mdi:radiator-disabled' }}
+      state: >-
+        {{ 'Grzać' if is_state('binary_sensor.ogrzewanie_zapotrzebowanie_wiatrolap', 'on') else 'Nie grzać' }}
+    - name: Ogrzewanie — decyzja biuro
+      unique_id: heating_decision_office
+      icon: >-
+        {{ 'mdi:radiator' if is_state('binary_sensor.ogrzewanie_zapotrzebowanie_biuro', 'on') else 'mdi:radiator-disabled' }}
+      state: >-
+        {{ 'Grzać' if is_state('binary_sensor.ogrzewanie_zapotrzebowanie_biuro', 'on') else 'Nie grzać' }}
+    - name: Ogrzewanie — decyzja pokój Hani
+      unique_id: heating_decision_hania
+      icon: >-
+        {{ 'mdi:radiator' if is_state('binary_sensor.ogrzewanie_zapotrzebowanie_pokoj_hani', 'on') else 'mdi:radiator-disabled' }}
+      state: >-
+        {{ 'Grzać' if is_state('binary_sensor.ogrzewanie_zapotrzebowanie_pokoj_hani', 'on') else 'Nie grzać' }}
+    - name: Ogrzewanie — decyzja sypialnia
+      unique_id: heating_decision_bedroom
+      icon: >-
+        {{ 'mdi:radiator' if is_state('binary_sensor.ogrzewanie_zapotrzebowanie_sypialnia', 'on') else 'mdi:radiator-disabled' }}
+      state: >-
+        {{ 'Grzać' if is_state('binary_sensor.ogrzewanie_zapotrzebowanie_sypialnia', 'on') else 'Nie grzać' }}
+    - name: Ogrzewanie — decyzja poddasze
+      unique_id: heating_decision_attic
+      icon: >-
+        {{ 'mdi:radiator' if is_state('binary_sensor.ogrzewanie_zapotrzebowanie_poddasze', 'on') else 'mdi:radiator-disabled' }}
+      state: >-
+        {{ 'Grzać' if is_state('binary_sensor.ogrzewanie_zapotrzebowanie_poddasze', 'on') else 'Nie grzać' }}
