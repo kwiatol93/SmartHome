@@ -1,0 +1,44 @@
+- id: heating_reset_single_setpoint
+  alias: Ogrzewanie — resetuj setpoint pojedynczej strefy
+  mode: queued
+  triggers:
+    - trigger: state
+      entity_id:
+        - input_button.heating_reset_living
+        - input_button.heating_reset_bathroom
+        - input_button.heating_reset_corridor
+        - input_button.heating_reset_wc
+        - input_button.heating_reset_wind_lobby
+        - input_button.heating_reset_office
+        - input_button.heating_reset_hania
+        - input_button.heating_reset_bedroom
+        - input_button.heating_reset_attic
+  variables:
+    zone: "{{ trigger.entity_id | replace('input_button.heating_reset_', '') }}"
+    profile: "{{ states('sensor.ogrzewanie_aktywny_profil') }}"
+    targets:
+      living: input_number.heating_setpoint_living
+      bathroom: input_number.heating_setpoint_bathroom
+      corridor: input_number.heating_setpoint_corridor
+      wc: input_number.heating_setpoint_wc
+      wind_lobby: input_number.heating_setpoint_wind_lobby
+      office: input_number.heating_setpoint_office
+      hania: input_number.heating_setpoint_hania
+      bedroom: input_number.heating_setpoint_bedroom
+      attic: input_number.heating_setpoint_attic
+    defaults:
+      living: {dzien_praca_praca: 22.9, dzien_praca_popoludnie: 22.9, dzien_wolny: 22.9, noc: 22.65, wyjazd: 20.0}
+      bathroom: {dzien_praca_praca: 23.5, dzien_praca_popoludnie: 23.5, dzien_wolny: 23.5, noc: 23.2, wyjazd: 20.0}
+      corridor: {dzien_praca_praca: 22.8, dzien_praca_popoludnie: 22.8, dzien_wolny: 22.8, noc: 22.5, wyjazd: 20.0}
+      wc: {dzien_praca_praca: 22.1, dzien_praca_popoludnie: 22.1, dzien_wolny: 22.1, noc: 22.0, wyjazd: 19.0}
+      wind_lobby: {dzien_praca_praca: 19.5, dzien_praca_popoludnie: 19.5, dzien_wolny: 19.5, noc: 19.5, wyjazd: 17.0}
+      office: {dzien_praca_praca: 22.8, dzien_praca_popoludnie: 21.5, dzien_wolny: 21.5, noc: 20.8, wyjazd: 17.0}
+      hania: {dzien_praca_praca: 21.3, dzien_praca_popoludnie: 21.7, dzien_wolny: 21.7, noc: 20.8, wyjazd: 17.0}
+      bedroom: {dzien_praca_praca: 21.3, dzien_praca_popoludnie: 21.8, dzien_wolny: 21.8, noc: 20.8, wyjazd: 17.0}
+      attic: {dzien_praca_praca: 19.9, dzien_praca_popoludnie: 19.9, dzien_wolny: 19.9, noc: 19.5, wyjazd: 16.0}
+  actions:
+    - action: input_number.set_value
+      target:
+        entity_id: "{{ targets[zone] }}"
+      data:
+        value: "{{ defaults[zone][profile] }}"

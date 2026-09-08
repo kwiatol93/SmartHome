@@ -103,3 +103,124 @@ views:
           - {entity: input_boolean.heating_automation_active, name: Automatyka ogrzewania aktywna}
           - {entity: input_button.heating_reset_all_setpoints, name: Resetuj wszystkie setpointy do profilu}
           - {entity: input_button.heating_emergency_off, name: Awaryjnie wyłącz ogrzewanie}
+
+  - title: Strefa dzienna
+    path: strefa-dzienna
+    icon: mdi:sofa
+    cards:
+      - {type: tile, entity: input_number.heating_setpoint_living, name: Setpoint strefy dziennej, features_position: bottom, features: [{type: numeric-input, style: slider}]}
+      - type: entities
+        title: Salon, kuchnia i jadalnia
+        entities:
+          - {entity: sensor.ogrzewanie_temperatura_strefa_dzienna, name: Temperatura}
+          - {entity: sensor.ogrzewanie_domyslny_setpoint_strefa_dzienna, name: Domyślny setpoint profilu}
+          - {entity: sensor.ogrzewanie_decyzja_strefa_dzienna, name: Decyzja braina}
+          - {entity: input_button.heating_reset_living, name: Resetuj do wartości domyślnej}
+
+  - title: Łazienka
+    path: lazienka
+    icon: mdi:shower
+    cards:
+      - {type: tile, entity: input_number.heating_setpoint_bathroom, name: Setpoint bazowy łazienki, features_position: bottom, features: [{type: numeric-input, style: slider}]}
+      - type: entities
+        title: Łazienka
+        entities:
+          - {entity: sensor.ogrzewanie_temperatura_lazienka, name: Temperatura}
+          - {entity: sensor.ogrzewanie_domyslny_setpoint_lazienki, name: Domyślny setpoint profilu}
+          - {entity: sensor.ogrzewanie_efektywny_setpoint_lazienki, name: Setpoint efektywny}
+          - {entity: sensor.ogrzewanie_decyzja_lazienka, name: Decyzja braina}
+          - {entity: input_select.heating_bathroom_boost_duration, name: Czas dogrzewania}
+          - {entity: input_button.heating_start_bathroom_boost, name: Uruchom dogrzewanie}
+          - {entity: timer.heating_bathroom_boost, name: Pozostały czas}
+          - {entity: input_button.heating_reset_bathroom, name: Resetuj do wartości domyślnej}
+
+  - title: Korytarz
+    path: korytarz
+    icon: mdi:door-open
+    cards:
+      - {type: tile, entity: input_number.heating_setpoint_corridor, name: Setpoint korytarza, features_position: bottom, features: [{type: numeric-input, style: slider}]}
+      - type: entities
+        title: Korytarz
+        entities:
+          - {entity: sensor.ogrzewanie_temperatura_korytarz, name: Temperatura}
+          - {entity: sensor.ogrzewanie_domyslny_setpoint_korytarza, name: Domyślny setpoint profilu}
+          - {entity: sensor.ogrzewanie_decyzja_korytarz, name: Decyzja braina}
+          - {entity: input_button.heating_reset_corridor, name: Resetuj do wartości domyślnej}
+
+  - title: WC
+    path: wc
+    icon: mdi:toilet
+    cards:
+      - {type: tile, entity: input_number.heating_setpoint_wc, name: Setpoint minimalny WC, features_position: bottom, features: [{type: numeric-input, style: slider}]}
+      - type: entities
+        title: WC
+        entities:
+          - {entity: sensor.ogrzewanie_temperatura_wc, name: Temperatura}
+          - {entity: sensor.ogrzewanie_domyslny_setpoint_wc, name: Domyślny setpoint profilu}
+          - {entity: sensor.ogrzewanie_decyzja_wc, name: Decyzja braina}
+          - {entity: input_button.heating_reset_wc, name: Resetuj do wartości domyślnej}
+
+  - title: Wiatrołap
+    path: wiatrolap
+    icon: mdi:door-closed
+    cards:
+      - {type: tile, entity: input_number.heating_setpoint_wind_lobby, name: Setpoint minimalny wiatrołapu, features_position: bottom, features: [{type: numeric-input, style: slider}]}
+      - type: entities
+        title: Wiatrołap
+        entities:
+          - {entity: sensor.ogrzewanie_temperatura_wiatrolap, name: Temperatura}
+          - {entity: sensor.ogrzewanie_domyslny_setpoint_wiatrolapu, name: Domyślny setpoint profilu}
+          - {entity: sensor.ogrzewanie_decyzja_wiatrolap, name: Decyzja braina}
+          - {entity: input_button.heating_reset_wind_lobby, name: Resetuj do wartości domyślnej}
+
+  - title: Biuro
+    path: biuro
+    icon: mdi:desk
+    cards:
+      - {type: tile, entity: input_number.heating_setpoint_office, name: Setpoint biura, features_position: bottom, features: [{type: numeric-input, style: slider}]}
+      - type: entities
+        title: Biuro
+        entities:
+          - {entity: sensor.ogrzewanie_temperatura_biuro, name: Temperatura}
+          - {entity: sensor.ogrzewanie_domyslny_setpoint_biura, name: Domyślny setpoint profilu}
+          - {entity: sensor.ogrzewanie_decyzja_biuro, name: Decyzja braina}
+          - {entity: input_button.heating_reset_office, name: Resetuj do wartości domyślnej}
+
+  - title: Pokój Hani
+    path: pokoj-hani
+    icon: mdi:teddy-bear
+    cards:
+      - {type: tile, entity: input_number.heating_setpoint_hania, name: Setpoint pokoju Hani, features_position: bottom, features: [{type: numeric-input, style: slider}]}
+      - type: entities
+        title: Pokój Hani
+        entities:
+          - {entity: sensor.ogrzewanie_temperatura_pokoj_hani, name: Temperatura}
+          - {entity: sensor.ogrzewanie_domyslny_setpoint_pokoju_hani, name: Domyślny setpoint profilu}
+          - {entity: sensor.ogrzewanie_decyzja_pokoj_hani, name: Decyzja braina}
+          - {entity: input_button.heating_reset_hania, name: Resetuj do wartości domyślnej}
+
+  - title: Sypialnia
+    path: sypialnia
+    icon: mdi:bed
+    cards:
+      - {type: tile, entity: input_number.heating_setpoint_bedroom, name: Setpoint sypialni, features_position: bottom, features: [{type: numeric-input, style: slider}]}
+      - type: entities
+        title: Sypialnia
+        entities:
+          - {entity: sensor.ogrzewanie_temperatura_sypialnia, name: Temperatura}
+          - {entity: sensor.ogrzewanie_domyslny_setpoint_sypialni, name: Domyślny setpoint profilu}
+          - {entity: sensor.ogrzewanie_decyzja_sypialnia, name: Decyzja braina}
+          - {entity: input_button.heating_reset_bedroom, name: Resetuj do wartości domyślnej}
+
+  - title: Poddasze
+    path: poddasze
+    icon: mdi:home-roof
+    cards:
+      - {type: tile, entity: input_number.heating_setpoint_attic, name: Setpoint poddasza, features_position: bottom, features: [{type: numeric-input, style: slider}]}
+      - type: entities
+        title: Poddasze
+        entities:
+          - {entity: sensor.ogrzewanie_temperatura_poddasze, name: Temperatura}
+          - {entity: sensor.ogrzewanie_domyslny_setpoint_poddasza, name: Domyślny setpoint profilu}
+          - {entity: sensor.ogrzewanie_decyzja_poddasze, name: Decyzja braina}
+          - {entity: input_button.heating_reset_attic, name: Resetuj do wartości domyślnej}

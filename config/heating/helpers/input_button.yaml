@@ -1,6 +1,33 @@
 heating_reset_all_setpoints:
   name: Ogrzewanie — resetuj wszystkie setpointy
   icon: mdi:restore
+heating_reset_living:
+  name: Ogrzewanie — resetuj strefę dzienną
+  icon: mdi:restore
+heating_reset_bathroom:
+  name: Ogrzewanie — resetuj łazienkę
+  icon: mdi:restore
+heating_reset_corridor:
+  name: Ogrzewanie — resetuj korytarz
+  icon: mdi:restore
+heating_reset_wc:
+  name: Ogrzewanie — resetuj WC
+  icon: mdi:restore
+heating_reset_wind_lobby:
+  name: Ogrzewanie — resetuj wiatrołap
+  icon: mdi:restore
+heating_reset_office:
+  name: Ogrzewanie — resetuj biuro
+  icon: mdi:restore
+heating_reset_hania:
+  name: Ogrzewanie — resetuj pokój Hani
+  icon: mdi:restore
+heating_reset_bedroom:
+  name: Ogrzewanie — resetuj sypialnię
+  icon: mdi:restore
+heating_reset_attic:
+  name: Ogrzewanie — resetuj poddasze
+  icon: mdi:restore
 heating_start_free_day:
   name: Ogrzewanie — wymuś dzień wolny
   icon: mdi:calendar-plus

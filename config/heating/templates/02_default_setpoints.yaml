@@ -1,0 +1,33 @@
+- sensor:
+    - name: Ogrzewanie — domyślny setpoint łazienki
+      unique_id: heating_default_setpoint_bathroom
+      unit_of_measurement: "°C"
+      state: "{{ {'dzien_praca_praca': 23.5, 'dzien_praca_popoludnie': 23.5, 'dzien_wolny': 23.5, 'noc': 23.2, 'wyjazd': 20.0}.get(states('sensor.ogrzewanie_aktywny_profil'), 20.0) }}"
+    - name: Ogrzewanie — domyślny setpoint korytarza
+      unique_id: heating_default_setpoint_corridor
+      unit_of_measurement: "°C"
+      state: "{{ {'dzien_praca_praca': 22.8, 'dzien_praca_popoludnie': 22.8, 'dzien_wolny': 22.8, 'noc': 22.5, 'wyjazd': 20.0}.get(states('sensor.ogrzewanie_aktywny_profil'), 20.0) }}"
+    - name: Ogrzewanie — domyślny setpoint WC
+      unique_id: heating_default_setpoint_wc
+      unit_of_measurement: "°C"
+      state: "{{ {'dzien_praca_praca': 22.1, 'dzien_praca_popoludnie': 22.1, 'dzien_wolny': 22.1, 'noc': 22.0, 'wyjazd': 19.0}.get(states('sensor.ogrzewanie_aktywny_profil'), 19.0) }}"
+    - name: Ogrzewanie — domyślny setpoint wiatrołapu
+      unique_id: heating_default_setpoint_wind_lobby
+      unit_of_measurement: "°C"
+      state: "{{ {'dzien_praca_praca': 19.5, 'dzien_praca_popoludnie': 19.5, 'dzien_wolny': 19.5, 'noc': 19.5, 'wyjazd': 17.0}.get(states('sensor.ogrzewanie_aktywny_profil'), 17.0) }}"
+    - name: Ogrzewanie — domyślny setpoint biura
+      unique_id: heating_default_setpoint_office
+      unit_of_measurement: "°C"
+      state: "{{ {'dzien_praca_praca': 22.8, 'dzien_praca_popoludnie': 21.5, 'dzien_wolny': 21.5, 'noc': 20.8, 'wyjazd': 17.0}.get(states('sensor.ogrzewanie_aktywny_profil'), 17.0) }}"
+    - name: Ogrzewanie — domyślny setpoint pokoju Hani
+      unique_id: heating_default_setpoint_hania
+      unit_of_measurement: "°C"
+      state: "{{ {'dzien_praca_praca': 21.3, 'dzien_praca_popoludnie': 21.7, 'dzien_wolny': 21.7, 'noc': 20.8, 'wyjazd': 17.0}.get(states('sensor.ogrzewanie_aktywny_profil'), 17.0) }}"
+    - name: Ogrzewanie — domyślny setpoint sypialni
+      unique_id: heating_default_setpoint_bedroom
+      unit_of_measurement: "°C"
+      state: "{{ {'dzien_praca_praca': 21.3, 'dzien_praca_popoludnie': 21.8, 'dzien_wolny': 21.8, 'noc': 20.8, 'wyjazd': 17.0}.get(states('sensor.ogrzewanie_aktywny_profil'), 17.0) }}"
+    - name: Ogrzewanie — domyślny setpoint poddasza
+      unique_id: heating_default_setpoint_attic
+      unit_of_measurement: "°C"
+      state: "{{ {'dzien_praca_praca': 19.9, 'dzien_praca_popoludnie': 19.9, 'dzien_wolny': 19.9, 'noc': 19.5, 'wyjazd': 16.0}.get(states('sensor.ogrzewanie_aktywny_profil'), 16.0) }}"
