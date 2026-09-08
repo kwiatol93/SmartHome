@@ -6,10 +6,8 @@ views:
     cards:
       - type: markdown
         content: >-
-          ## Ogrzewanie
-
-          Ten dashboard działa obecnie w **trybie obserwacji**. Pokazuje decyzje
-          nowego modułu, ale nie steruje zaworami, pompą ani piecem.
+          Tryb obserwacji: moduł pokazuje swoje decyzje, ale nie steruje jeszcze
+          zaworami, pompą ani piecem.
 
       - type: entities
         title: Tryb i harmonogram
@@ -31,110 +29,77 @@ views:
             name: Anuluj wymuszenie
 
       - type: entities
+        title: Logiczne wyjścia — co nowy system chce teraz grzać
+        show_header_toggle: false
+        entities:
+          - {entity: binary_sensor.ogrzewanie_zapotrzebowanie_strefa_dzienna, name: Strefa dzienna}
+          - {entity: binary_sensor.ogrzewanie_zapotrzebowanie_lazienka, name: Łazienka}
+          - {entity: binary_sensor.ogrzewanie_zapotrzebowanie_korytarz, name: Korytarz}
+          - {entity: binary_sensor.ogrzewanie_zapotrzebowanie_wc, name: WC}
+          - {entity: binary_sensor.ogrzewanie_zapotrzebowanie_wiatrolap, name: Wiatrołap}
+          - {entity: binary_sensor.ogrzewanie_zapotrzebowanie_biuro, name: Biuro}
+          - {entity: binary_sensor.ogrzewanie_zapotrzebowanie_pokoj_hani, name: Pokój Hani}
+          - {entity: binary_sensor.ogrzewanie_zapotrzebowanie_sypialnia, name: Sypialnia}
+          - {entity: binary_sensor.ogrzewanie_zapotrzebowanie_poddasze, name: Poddasze}
+
+      - type: grid
+        title: Setpointy stref
+        columns: 2
+        square: false
+        cards:
+          - {type: tile, entity: input_number.heating_setpoint_living, name: Strefa dzienna, features_position: bottom, features: [{type: numeric-input, style: slider}]}
+          - {type: tile, entity: input_number.heating_setpoint_bathroom, name: Łazienka — baza, features_position: bottom, features: [{type: numeric-input, style: slider}]}
+          - {type: tile, entity: input_number.heating_setpoint_corridor, name: Korytarz, features_position: bottom, features: [{type: numeric-input, style: slider}]}
+          - {type: tile, entity: input_number.heating_setpoint_wc, name: WC — minimum, features_position: bottom, features: [{type: numeric-input, style: slider}]}
+          - {type: tile, entity: input_number.heating_setpoint_wind_lobby, name: Wiatrołap — minimum, features_position: bottom, features: [{type: numeric-input, style: slider}]}
+          - {type: tile, entity: input_number.heating_setpoint_office, name: Biuro, features_position: bottom, features: [{type: numeric-input, style: slider}]}
+          - {type: tile, entity: input_number.heating_setpoint_hania, name: Pokój Hani, features_position: bottom, features: [{type: numeric-input, style: slider}]}
+          - {type: tile, entity: input_number.heating_setpoint_bedroom, name: Sypialnia, features_position: bottom, features: [{type: numeric-input, style: slider}]}
+          - {type: tile, entity: input_number.heating_setpoint_attic, name: Poddasze, features_position: bottom, features: [{type: numeric-input, style: slider}]}
+
+      - type: entities
         title: Strefa dzienna — salon, kuchnia i jadalnia
         show_header_toggle: false
         entities:
-          - entity: sensor.ogrzewanie_temperatura_strefa_dzienna
-            name: Temperatura
-          - entity: input_number.heating_setpoint_living
-            name: Setpoint
-          - entity: sensor.ogrzewanie_domyslny_setpoint_strefa_dzienna
-            name: Domyślny setpoint profilu
-          - entity: binary_sensor.ogrzewanie_zapotrzebowanie_strefa_dzienna
-            name: Nowe zapotrzebowanie
+          - {entity: sensor.ogrzewanie_temperatura_strefa_dzienna, name: Temperatura}
+          - {entity: sensor.ogrzewanie_domyslny_setpoint_strefa_dzienna, name: Domyślny setpoint profilu}
+          - {entity: binary_sensor.ogrzewanie_zapotrzebowanie_strefa_dzienna, name: Decyzja braina}
 
       - type: entities
         title: Łazienka i korytarz
         show_header_toggle: false
         entities:
-          - entity: sensor.ogrzewanie_temperatura_lazienka
-            name: Łazienka — temperatura
-          - entity: input_number.heating_setpoint_bathroom
-            name: Łazienka — setpoint bazowy
-          - entity: sensor.ogrzewanie_efektywny_setpoint_lazienki
-            name: Łazienka — setpoint efektywny
-          - entity: binary_sensor.ogrzewanie_zapotrzebowanie_lazienka
-            name: Łazienka — nowe zapotrzebowanie
-          - entity: input_select.heating_bathroom_boost_duration
-            name: Czas dogrzewania
-          - entity: input_button.heating_start_bathroom_boost
-            name: Uruchom dogrzewanie łazienki
-          - entity: timer.heating_bathroom_boost
-            name: Pozostały czas dogrzewania
-          - type: section
-            label: Korytarz
-          - entity: sensor.ogrzewanie_temperatura_korytarz
-            name: Temperatura
-          - entity: input_number.heating_setpoint_corridor
-            name: Setpoint
-          - entity: binary_sensor.ogrzewanie_zapotrzebowanie_korytarz
-            name: Nowe zapotrzebowanie
+          - {entity: sensor.ogrzewanie_temperatura_lazienka, name: Łazienka — temperatura}
+          - {entity: sensor.ogrzewanie_efektywny_setpoint_lazienki, name: Łazienka — setpoint efektywny}
+          - {entity: binary_sensor.ogrzewanie_zapotrzebowanie_lazienka, name: Łazienka — decyzja braina}
+          - {entity: input_select.heating_bathroom_boost_duration, name: Czas dogrzewania}
+          - {entity: input_button.heating_start_bathroom_boost, name: Uruchom dogrzewanie}
+          - {entity: timer.heating_bathroom_boost, name: Pozostały czas dogrzewania}
+          - {entity: sensor.ogrzewanie_temperatura_korytarz, name: Korytarz — temperatura}
+          - {entity: binary_sensor.ogrzewanie_zapotrzebowanie_korytarz, name: Korytarz — decyzja braina}
 
       - type: entities
-        title: WC i wiatrołap
+        title: Pozostałe strefy
         show_header_toggle: false
         entities:
-          - entity: sensor.ogrzewanie_temperatura_wc
-            name: WC — temperatura
-          - entity: input_number.heating_setpoint_wc
-            name: WC — setpoint minimalny
-          - entity: binary_sensor.ogrzewanie_zapotrzebowanie_wc
-            name: WC — nowe zapotrzebowanie
-          - type: section
-            label: Wiatrołap
-          - entity: sensor.ogrzewanie_temperatura_wiatrolap
-            name: Temperatura
-          - entity: input_number.heating_setpoint_wind_lobby
-            name: Setpoint minimalny
-          - entity: binary_sensor.ogrzewanie_zapotrzebowanie_wiatrolap
-            name: Nowe zapotrzebowanie
-
-      - type: entities
-        title: Grzejniki
-        show_header_toggle: false
-        entities:
-          - type: section
-            label: Biuro
-          - entity: sensor.ogrzewanie_temperatura_biuro
-            name: Temperatura
-          - entity: input_number.heating_setpoint_office
-            name: Setpoint
-          - entity: binary_sensor.ogrzewanie_zapotrzebowanie_biuro
-            name: Nowe zapotrzebowanie
-          - type: section
-            label: Pokój Hani
-          - entity: sensor.ogrzewanie_temperatura_pokoj_hani
-            name: Temperatura
-          - entity: input_number.heating_setpoint_hania
-            name: Setpoint
-          - entity: binary_sensor.ogrzewanie_zapotrzebowanie_pokoj_hani
-            name: Nowe zapotrzebowanie
-          - type: section
-            label: Sypialnia
-          - entity: sensor.ogrzewanie_temperatura_sypialnia
-            name: Temperatura
-          - entity: input_number.heating_setpoint_bedroom
-            name: Setpoint
-          - entity: binary_sensor.ogrzewanie_zapotrzebowanie_sypialnia
-            name: Nowe zapotrzebowanie
-          - type: section
-            label: Poddasze
-          - entity: sensor.ogrzewanie_temperatura_poddasze
-            name: Temperatura
-          - entity: input_number.heating_setpoint_attic
-            name: Setpoint
-          - entity: binary_sensor.ogrzewanie_zapotrzebowanie_poddasze
-            name: Nowe zapotrzebowanie
+          - {entity: sensor.ogrzewanie_temperatura_wc, name: WC — temperatura}
+          - {entity: binary_sensor.ogrzewanie_zapotrzebowanie_wc, name: WC — decyzja braina}
+          - {entity: sensor.ogrzewanie_temperatura_wiatrolap, name: Wiatrołap — temperatura}
+          - {entity: binary_sensor.ogrzewanie_zapotrzebowanie_wiatrolap, name: Wiatrołap — decyzja braina}
+          - {entity: sensor.ogrzewanie_temperatura_biuro, name: Biuro — temperatura}
+          - {entity: binary_sensor.ogrzewanie_zapotrzebowanie_biuro, name: Biuro — decyzja braina}
+          - {entity: sensor.ogrzewanie_temperatura_pokoj_hani, name: Pokój Hani — temperatura}
+          - {entity: binary_sensor.ogrzewanie_zapotrzebowanie_pokoj_hani, name: Pokój Hani — decyzja braina}
+          - {entity: sensor.ogrzewanie_temperatura_sypialnia, name: Sypialnia — temperatura}
+          - {entity: binary_sensor.ogrzewanie_zapotrzebowanie_sypialnia, name: Sypialnia — decyzja braina}
+          - {entity: sensor.ogrzewanie_temperatura_poddasze, name: Poddasze — temperatura}
+          - {entity: binary_sensor.ogrzewanie_zapotrzebowanie_poddasze, name: Poddasze — decyzja braina}
 
       - type: entities
         title: Bezpieczniki i reset
         show_header_toggle: false
         entities:
-          - entity: input_boolean.heating_shadow_mode
-            name: Tryb obserwacji
-          - entity: input_boolean.heating_automation_active
-            name: Automatyka ogrzewania aktywna
-          - entity: input_button.heating_reset_all_setpoints
-            name: Resetuj wszystkie setpointy do profilu
-          - entity: input_button.heating_emergency_off
-            name: Awaryjnie wyłącz ogrzewanie
+          - {entity: input_boolean.heating_shadow_mode, name: Tryb obserwacji}
+          - {entity: input_boolean.heating_automation_active, name: Automatyka ogrzewania aktywna}
+          - {entity: input_button.heating_reset_all_setpoints, name: Resetuj wszystkie setpointy do profilu}
+          - {entity: input_button.heating_emergency_off, name: Awaryjnie wyłącz ogrzewanie}
