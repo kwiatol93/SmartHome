@@ -5,3 +5,12 @@ default_config:
 
 homeassistant:
   packages: !include_dir_named packages
+
+lovelace:
+  dashboards:
+    ogrzewanie:
+      mode: yaml
+      title: Ogrzewanie
+      icon: mdi:radiator
+      show_in_sidebar: true
+      filename: smarthome/config/dashboards/ogrzewanie.yaml
